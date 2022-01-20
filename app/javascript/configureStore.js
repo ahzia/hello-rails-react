@@ -1,18 +1,8 @@
-import {createStore} from "redux";
-
-const initialState = {
-    greeting: ""
-};
-
-function rootReducer(state, action) {
-    console.log(action.type);
-    switch (action,type) {
-        default:
-            return state
-    }
-}
+import {createStore, applyMiddleware} from "redux";
+import thunk from 'redux-thunk';
+import greetingReducer from './books/books';
 
 export default function configureStore() {
-    const store = createStore(rootReducer, initialState);
+    const store = createStore(greetingReducer, initialState, applyMiddleware(thunk));
     return store;
 }
