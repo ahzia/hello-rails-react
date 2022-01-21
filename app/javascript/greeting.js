@@ -1,5 +1,6 @@
 //API Request
-const endPoint = `${baseURL}/apps/${appId}/books`;
+const endPoint = 'v1/greetings.json'; // Need to work on this
+const SHOW_GREETING = 'SHOW_GREETING'; 
 const get = async () => {
   let result = "";
   await fetch(endPoint)
@@ -7,6 +8,7 @@ const get = async () => {
     .then((data) => {
       result = data;
     });
+  console.log(result);
   return result;
 };
 
@@ -18,7 +20,9 @@ export const showGreeting = (payload) => ({
 
 //Initial state
 const initialState = {
-    greeting: ""
+    greeting: {
+      message: "loading"
+    }
 };
 
 //middleware
@@ -31,7 +35,7 @@ const getRandomGreeting = () => (dispatch) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_GREETING:
-      return state;
+      return action.payload;
     default:
       return state;
   }
